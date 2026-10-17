@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments :: head('Đăng nhập')}"></head>
+  <body>
+    <header th:replace="~{fragments :: header}"></header>
+    <main id="main" class="container">
+      <div class="auth">
+        <div class="eyebrow">CHÀO BẠN TRỞ LẠI</div>
+        <h1>Ghé trạm một chút.</h1>
+        <div class="notice" th:if="${param.registered}" role="status">
+          Đăng ký thành công. Bạn có thể đăng nhập.
+        </div>
+        <div class="error" th:if="${param.error}" role="alert">
+          Email hoặc mật khẩu chưa đúng.
+        </div>
+        <div th:replace="~{fragments :: demoHint}"></div><form class="panel" th:action="@{/login}" method="post">
+          <div class="field">
+            <label for="username">Email</label
+            ><input
+              id="username"
+              type="email"
+              name="username" th:value="${loginEmail}"
+              required
+              autocomplete="username"
+              maxlength="180"
+            />
+          </div>
+          <div class="field">
+            <label for="password">Mật khẩu</label
+            ><input
+              id="password"
+              type="password"
+              name="password" th:value="${loginPassword}"
+              required
+              autocomplete="current-password"
+              maxlength="72"
+            />
+          </div>
+          <button type="submit" class="full">Đăng nhập</button>
+          <div class="login-demo-tools" th:if="${demoMode}"><button type="button" class="text-button" data-demo-login th:data-email="${demo.email()}" th:data-password="${demo.password()}">Điền lại tài khoản demo</button><button type="button" class="text-button" data-clear-login>Nhập tài khoản khác / quản trị</button></div><p class="note">
+            Chưa có tài khoản?
+            <a th:href="@{/register}"><strong>Đăng ký bạn đọc</strong></a>
+          </p>
+          <p class="alert-demo">
+            Tài khoản quản trị dùng cùng màn hình đăng nhập. Dữ liệu trong cửa
+            hàng là dữ liệu minh họa.
+          </p>
+        </form>
+      </div>
+    </main>
+    <footer th:replace="~{fragments :: footer}"></footer>
+  </body>
+</html>

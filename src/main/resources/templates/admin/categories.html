@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments :: head('Thể loại')}"></head>
+  <body>
+    <header th:replace="~{fragments :: header}"></header>
+    <main id="main" class="container">
+      <nav th:replace="~{fragments :: adminNav}"></nav>
+      <div class="page-head">
+        <h1>Những góc kệ.</h1>
+        <p class="muted">
+          Tạm ngừng thể loại sẽ ẩn các sách thuộc thể loại đó khỏi cửa hàng.
+        </p>
+      </div>
+      <div th:replace="~{fragments :: flash}"></div><div class="stack">
+        <div class="panel" th:each="c:${categories}">
+          <form
+            class="inline-edit"
+            th:action="@{/admin/categories}"
+            method="post"
+          >
+            <input type="hidden" name="id" th:value="${c.id}" /><label
+              class="sr-only"
+              th:for="${'name-'+c.id}"
+              >Tên thể loại</label
+            ><input
+              th:id="${'name-'+c.id}"
+              type="text"
+              name="name"
+              th:value="${categoryInput != null and categoryInput.id == c.id.toString() ? categoryInput.name : c.name}"
+              required
+              maxlength="80"
+            /><input
+              th:id="${'active-'+c.id}"
+              type="checkbox"
+              name="active"
+              value="true"
+              th:checked="${categoryInput != null and categoryInput.id == c.id.toString() ? categoryInput.active : c.active}"
+            /><label th:for="${'active-'+c.id}">Hoạt động</label
+            ><button class="secondary" type="submit">Lưu</button>
+          </form>
+        </div>
+        <form
+          class="panel inline-edit"
+          th:action="@{/admin/categories}"
+          method="post"
+        >
+          <label for="new-name">Thể loại mới</label
+          ><input
+            id="new-name" th:value="${categoryInput != null and categoryInput.id == '' ? categoryInput.name : (demoMode?'Góc đọc mới':'')}"
+            type="text"
+            name="name"
+            required
+            maxlength="80"
+          /><input type="hidden" name="active" value="true" /><button
+            type="submit"
+          >
+            Thêm thể loại
+          </button>
+        </form>
+      </div>
+    </main>
+    <footer th:replace="~{fragments :: footer}"></footer>
+  </body>
+</html>

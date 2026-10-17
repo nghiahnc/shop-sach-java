@@ -1,0 +1,248 @@
+[
+  {
+    "id": 1,
+    "isbn": "9780061122415",
+    "title": "The Alchemist",
+    "author": "Paulo Coelho",
+    "editionUrl": "http://openlibrary.org/books/OL7288233M/The_Alchemist",
+    "imageSource": "https://covers.openlibrary.org/b/id/15121528-L.jpg",
+    "file": "/images/book-01.webp",
+    "size": [
+      331,
+      500
+    ]
+  },
+  {
+    "id": 2,
+    "isbn": "9780156012195",
+    "title": "The Little Prince",
+    "author": "Antoine de Saint-Exupéry",
+    "editionUrl": "http://openlibrary.org/books/OL25435833M/The_Little_Prince",
+    "imageSource": "https://covers.openlibrary.org/b/id/7268667-L.jpg",
+    "file": "/images/book-02.webp",
+    "size": [
+      383,
+      475
+    ]
+  },
+  {
+    "id": 3,
+    "isbn": "9780061120084",
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "editionUrl": "http://openlibrary.org/books/OL9242848M/To_Kill_a_Mockingbird",
+    "imageSource": "https://covers.openlibrary.org/b/id/15162569-L.jpg",
+    "file": "/images/book-03.webp",
+    "size": [
+      332,
+      500
+    ]
+  },
+  {
+    "id": 4,
+    "isbn": "9781847941831",
+    "title": "Atomic Habits",
+    "author": "James Clear",
+    "editionUrl": "http://openlibrary.org/books/OL57360656M/Atomic_Habits",
+    "imageSource": "https://covers.openlibrary.org/b/id/15247577-L.jpg",
+    "file": "/images/book-04.webp",
+    "size": [
+      276,
+      425
+    ]
+  },
+  {
+    "id": 5,
+    "isbn": "9781455586691",
+    "title": "Deep Work",
+    "author": "Cal Newport",
+    "editionUrl": "http://openlibrary.org/books/OL26314691M/Deep_Work",
+    "imageSource": "https://covers.openlibrary.org/b/id/14859612-L.jpg",
+    "file": "/images/book-05.webp",
+    "size": [
+      331,
+      500
+    ]
+  },
+  {
+    "id": 6,
+    "isbn": "9780345472328",
+    "title": "Mindset",
+    "author": "Carol S. Dweck",
+    "editionUrl": "http://openlibrary.org/books/OL23002324M/Mindset",
+    "imageSource": "https://images.penguinrandomhouse.com/cover/9780345472328",
+    "file": "/images/book-06.webp",
+    "size": [
+      290,
+      450
+    ]
+  },
+  {
+    "id": 7,
+    "isbn": "9780132350884",
+    "title": "Clean Code",
+    "author": "Robert C. Martin",
+    "editionUrl": "http://openlibrary.org/books/OL26222911M/Clean_Code",
+    "imageSource": "https://covers.openlibrary.org/b/id/15126503-L.jpg",
+    "file": "/images/book-07.webp",
+    "size": [
+      375,
+      500
+    ]
+  },
+  {
+    "id": 8,
+    "isbn": "9780134685991",
+    "title": "Effective Java",
+    "author": "Joshua Bloch",
+    "editionUrl": "http://openlibrary.org/books/OL31838212M/Effective_Java",
+    "imageSource": "https://covers.openlibrary.org/b/id/12420356-L.jpg",
+    "file": "/images/book-08.webp",
+    "size": [
+      306,
+      400
+    ]
+  },
+  {
+    "id": 9,
+    "isbn": "9781492078005",
+    "title": "Head First Design Patterns",
+    "author": "Eric Freeman & Elisabeth Robson",
+    "editionUrl": "http://openlibrary.org/books/OL29522846M/Head_First_Design_Patterns",
+    "imageSource": "https://covers.openlibrary.org/b/id/13345163-L.jpg",
+    "file": "/images/book-09.webp",
+    "size": [
+      432,
+      500
+    ]
+  },
+  {
+    "id": 10,
+    "isbn": "9780465050659",
+    "title": "The Design of Everyday Things",
+    "author": "Don Norman",
+    "editionUrl": "http://openlibrary.org/books/OL25726927M/The_Design_of_Everyday_Things",
+    "imageSource": "https://covers.openlibrary.org/b/id/14428212-L.jpg",
+    "file": "/images/book-10.webp",
+    "size": [
+      322,
+      500
+    ]
+  },
+  {
+    "id": 11,
+    "isbn": "9780761169253",
+    "title": "Steal Like an Artist",
+    "author": "Austin Kleon",
+    "editionUrl": "http://openlibrary.org/books/OL25189913M/Steal_like_an_artist",
+    "imageSource": "https://covers.openlibrary.org/b/id/7284187-L.jpg",
+    "file": "/images/book-11.webp",
+    "size": [
+      260,
+      260
+    ]
+  },
+  {
+    "id": 12,
+    "isbn": "9780714832470",
+    "title": "The Story of Art",
+    "author": "E. H. Gombrich",
+    "editionUrl": "http://openlibrary.org/books/OL22114394M/The_story_of_art",
+    "imageSource": "https://covers.openlibrary.org/b/id/14858422-L.jpg",
+    "file": "/images/book-12.webp",
+    "size": [
+      344,
+      500
+    ]
+  },
+  {
+    "id": 13,
+    "isbn": "9780753555194",
+    "title": "Zero to One",
+    "author": "Peter Thiel & Blake Masters",
+    "editionUrl": "http://openlibrary.org/books/OL27319598M/Zero_to_One_Notes_on_Start-Ups_or_How_to_Build_the_Future",
+    "imageSource": "https://covers.openlibrary.org/b/id/8788173-L.jpg",
+    "file": "/images/book-13.webp",
+    "size": [
+      319,
+      500
+    ]
+  },
+  {
+    "id": 14,
+    "isbn": "9780307887894",
+    "title": "The Lean Startup",
+    "author": "Eric Ries",
+    "editionUrl": "http://openlibrary.org/books/OL24982481M/The_Lean_Startup",
+    "imageSource": "https://covers.openlibrary.org/b/id/7104760-L.jpg",
+    "file": "/images/book-14.webp",
+    "size": [
+      344,
+      500
+    ]
+  },
+  {
+    "id": 15,
+    "isbn": "9780066620992",
+    "title": "Good to Great",
+    "author": "Jim Collins",
+    "editionUrl": "http://openlibrary.org/books/OL17035731M/Good_to_great",
+    "imageSource": "https://covers.openlibrary.org/b/id/14620216-L.jpg",
+    "file": "/images/book-15.webp",
+    "size": [
+      330,
+      500
+    ]
+  },
+  {
+    "id": 16,
+    "isbn": "9780143130727",
+    "title": "Ikigai",
+    "author": "Héctor García & Francesc Miralles",
+    "editionUrl": "http://openlibrary.org/books/OL26927371M/Ikigai",
+    "imageSource": "https://images.penguinrandomhouse.com/cover/9780143130727",
+    "file": "/images/book-16.webp",
+    "size": [
+      318,
+      450
+    ]
+  },
+  {
+    "id": 17,
+    "isbn": "9781607747307",
+    "title": "The Life-Changing Magic of Tidying Up",
+    "author": "Marie Kondo",
+    "editionUrl": "http://openlibrary.org/books/OL25651081M/The_Life-Changing_Magic_of_Tidying_Up",
+    "imageSource": "https://covers.openlibrary.org/b/id/7367218-L.jpg",
+    "file": "/images/book-17.webp",
+    "size": [
+      351,
+      500
+    ]
+  },
+  {
+    "id": 18,
+    "isbn": "9780241283912",
+    "title": "The Little Book of Hygge",
+    "author": "Meik Wiking",
+    "editionUrl": "http://openlibrary.org/books/OL26808625M/The_Little_Book_of_Hygge_The_Danish_Way_to_Live_Well",
+    "imageSource": "https://covers.openlibrary.org/b/id/8464293-L.jpg",
+    "file": "/images/book-18.webp",
+    "size": [
+      359,
+      500
+    ]
+  },
+  {
+    "file": "/images/hero-library.webp",
+    "photographer": "Polina Zimmerman",
+    "source": "https://www.pexels.com/photo/3747576/",
+    "license": "https://www.pexels.com/license/"
+  },
+  {
+    "file": "/images/reading-room.webp",
+    "photographer": "Polina Zimmerman",
+    "source": "https://www.pexels.com/photo/3747555/",
+    "license": "https://www.pexels.com/license/"
+  }
+]

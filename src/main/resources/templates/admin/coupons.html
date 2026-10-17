@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments :: head('Mã giảm giá')}"></head>
+  <body>
+    <header th:replace="~{fragments :: header}"></header>
+    <main id="main" class="container">
+      <nav th:replace="~{fragments :: adminNav}"></nav>
+      <div class="page-head">
+        <h1>Một chút ưu đãi cho bạn đọc.</h1>
+        <p class="muted">
+          Mỗi đơn dùng một mã. Nhập mã đã có để cập nhật chính sách hoặc tạm
+          ngừng.
+        </p>
+      </div>
+      <div th:replace="~{fragments :: flash}"></div><div class="two-col">
+        <div class="panel table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Mã</th>
+                <th>Chính sách</th>
+                <th>Đơn tối thiểu</th>
+                <th>Trạng thái</th>
+                <th>Hết hạn</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="c:${coupons}">
+                <td th:text="${c.code}"></td>
+                <td
+                  th:text="${c.kind == 'PERCENT' ? c.value+'%' : @ui.money(c.value)}"
+                ></td>
+                <td th:text="${@ui.money(c.minimum)}"></td>
+                <td th:text="${c.active ? 'Hoạt động' : 'Tạm ngừng'}"></td>
+                <td
+                  th:text="${c.expiresAt == null ? 'Không giới hạn' : @ui.time(c.expiresAt)}"
+                ></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <form class="panel" th:action="@{/admin/coupons}" method="post">
+          <h2>Thêm / cập nhật mã</h2>
+          <div class="field">
+            <label for="code">Mã (A–Z, 0–9)</label
+            ><input
+              id="code" th:value="${couponInput != null ? couponInput.code : (demoMode?'BANDOC15':'')}"
+              name="code"
+              required
+              minlength="3"
+              maxlength="24"
+              pattern="[A-Za-z0-9]{3,24}"
+            />
+          </div>
+          <div class="field">
+            <label for="kind">Chính sách</label
+            ><select id="kind" name="kind">
+              <option value="PERCENT" th:selected="${couponInput == null or couponInput.kind == 'PERCENT'}">Giảm phần trăm</option>
+              <option value="FIXED" th:selected="${couponInput != null and couponInput.kind == 'FIXED'}">Giảm số tiền VND</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="value">Giá trị giảm</label
+            ><input
+              id="value" th:value="${couponInput != null ? couponInput.value : (demoMode?15:null)}"
+              name="value"
+              type="number"
+              min="1"
+              max="100000000"
+              required
+            />
+          </div>
+          <div class="field">
+            <label for="minimum">Đơn tối thiểu (VND)</label
+            ><input
+              id="minimum"
+              name="minimum"
+              type="number"
+              min="0"
+              th:value="${couponInput != null ? couponInput.minimum : (demoMode?150000:0)}"
+              required
+            />
+          </div>
+          <div class="field">
+            <label for="expires">Ngày cuối áp dụng</label
+            ><input id="expires" name="expires" th:value="${couponInput?.expires}" type="date" /><small
+              >Để trống nếu không giới hạn.</small
+            >
+          </div>
+          <div class="field check">
+            <input
+              id="active"
+              name="active"
+              type="checkbox"
+              value="true"
+              th:checked="${couponInput == null or couponInput.active}"
+            /><label for="active">Hoạt động</label>
+          </div>
+          <button type="submit">Lưu mã giảm giá</button>
+        </form>
+      </div>
+    </main>
+    <footer th:replace="~{fragments :: footer}"></footer>
+  </body>
+</html>

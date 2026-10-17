@@ -1,0 +1,14 @@
+{
+  "name": "tram-sach-browser-qa",
+  "private": true,
+  "description": "Optional browser QA tools. The storefront runtime is Java.",
+  "scripts": {
+    "qa": "node scripts/qa-browser.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1",
+    "stripe": "23.0.0",
+    "pg": "8.23.1",
+    "dotenv": "17.4.2"
+  }
+}

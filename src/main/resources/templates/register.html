@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments :: head('Đăng ký')}"></head>
+  <body>
+    <header th:replace="~{fragments :: header}"></header>
+    <main id="main" class="container">
+      <div class="auth">
+        <div class="eyebrow">THÊM MỘT NGƯỜI BẠN YÊU ĐỌC</div>
+        <h1>Xin chào, bạn đọc mới.</h1>
+        <div th:replace="~{fragments :: demoHint}"></div><form
+          class="panel"
+          th:action="@{/register}"
+          th:object="${form}"
+          method="post"
+        >
+          <div class="field">
+            <label for="name">Họ và tên</label
+            ><input
+              id="name"
+              th:field="*{name}"
+              required
+              maxlength="100"
+              autocomplete="name"
+            /><span class="field-error" th:errors="*{name}"></span>
+          </div>
+          <div class="field">
+            <label for="email">Email</label
+            ><input
+              id="email"
+              type="email"
+              th:field="*{email}"
+              required
+              maxlength="180"
+              autocomplete="email"
+            /><span class="field-error" th:errors="*{email}"></span>
+          </div>
+          <div class="field">
+            <label for="password">Mật khẩu</label
+            ><input
+              id="password"
+              type="password"
+              name="password" th:value="${form.password}"
+              required
+              minlength="10"
+              maxlength="72"
+              autocomplete="new-password"
+            /><small>10–72 ký tự; nên dùng mật khẩu riêng cho demo.</small
+            ><span class="field-error" th:errors="*{password}"></span>
+          </div>
+          <button class="full" type="submit">Tạo tài khoản</button>
+          <p class="note">
+            Đã có tài khoản?
+            <a th:href="@{/login}"><strong>Đăng nhập</strong></a>
+          </p>
+        </form>
+      </div>
+    </main>
+    <footer th:replace="~{fragments :: footer}"></footer>
+  </body>
+</html>

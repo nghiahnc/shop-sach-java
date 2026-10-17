@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments :: head('Không có quyền truy cập')}"></head>
+  <body>
+    <header th:replace="~{fragments :: header}"></header>
+    <main id="main" class="container">
+      <div class="auth panel">
+        <h1>Góc này cần quyền truy cập.</h1>
+        <p>
+          Bạn chỉ có thể xem đơn của mình. Khu quản trị dành cho tài khoản
+          ADMIN.
+        </p>
+        <a class="button" th:href="@{/}">Về cửa hàng</a>
+      </div>
+    </main>
+    <footer th:replace="~{fragments :: footer}"></footer>
+  </body>
+</html>

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments :: head('Đặt hàng')}"></head>
+  <body>
+    <header th:replace="~{fragments :: header}"></header>
+    <main id="main" class="container">
+      <div class="page-head">
+        <div class="eyebrow">CHỈ CÒN MỘT BƯỚC NỮA</div>
+        <h1>Đưa những trang sách về nhà.</h1>
+        <p class="muted">
+          Kiểm tra thông tin và chọn phương thức thanh toán demo.
+        </p>
+      </div>
+      <div th:replace="~{fragments :: demoHint}"></div><form
+        class="two-col"
+        data-once
+        th:action="@{/checkout}"
+        th:object="${form}"
+        method="post"
+      >
+        <section class="panel">
+          <h2>Thông tin nhận hàng</h2>
+          <input type="hidden" th:field="*{key}" />
+          <div class="field">
+            <label for="name">Người nhận</label
+            ><input
+              id="name"
+              th:field="*{name}"
+              required
+              maxlength="100"
+              autocomplete="name"
+            /><span class="field-error" th:errors="*{name}"></span>
+          </div>
+          <div class="field">
+            <label for="phone">Số điện thoại</label
+            ><input
+              id="phone"
+              th:field="*{phone}"
+              type="tel"
+              required
+              maxlength="20"
+              autocomplete="tel"
+            /><span class="field-error" th:errors="*{phone}"></span>
+          </div>
+          <div class="field">
+            <label for="address">Địa chỉ nhận hàng</label
+            ><textarea
+              id="address"
+              th:field="*{address}"
+              rows="3"
+              required
+              minlength="10"
+              maxlength="500"
+              autocomplete="street-address"
+            ></textarea
+            ><span class="field-error" th:errors="*{address}"></span>
+          </div>
+          <h3>Phương thức thanh toán</h3>
+          <div class="payment-choice">
+            <input
+              id="cod"
+              type="radio"
+              th:field="*{method}"
+              value="COD"
+            /><label for="cod"
+              >Thanh toán khi nhận hàng<small
+                >COD demo — ghi nhận tiền khi giao hoàn tất.</small
+              ></label
+            >
+          </div>
+          <div class="payment-choice">
+            <input
+              id="stripe"
+              type="radio"
+              th:field="*{method}"
+              value="STRIPE"
+            /><label for="stripe"
+              >Thẻ qua Stripe sandbox<small
+                >Visa thử nghiệm 4242 đã lưu sẵn trong chế độ demo. Chỉ cần xác nhận trên Stripe; không dùng thẻ thật.</small
+              ></label
+            >
+          </div>
+          <span class="field-error" th:errors="*{method}"></span>
+        </section>
+        <aside class="panel">
+          <h2>Đơn sách của bạn</h2>
+          <div class="summary-row" th:each="line:${quote.lines}">
+            <span th:text="${line.book.title+' × '+line.quantity}"></span
+            ><strong th:text="${line.total.display()}"></strong>
+          </div>
+          <div th:replace="~{fragments :: totals(${quote})}"></div>
+          <div class="notice" th:if="${currency == 'usd'}">
+            Stripe sandbox thu USD theo tỷ giá demo cố định 26.000đ/USD. Số tiền
+            thẻ:
+            <strong
+              th:text="${@ui.charged('usd',(quote.total.vnd()*100+25999)/26000)}"
+            ></strong
+            >.
+          </div>
+          <button
+            type="submit"
+            class="full"
+            data-label="Xác nhận đặt hàng"
+            data-spacing="top"
+          >
+            Xác nhận đặt hàng
+          </button>
+          <p class="alert-demo">
+            Không phát sinh giao hàng hoặc thanh toán thật. Giá được kiểm tra
+            lại ở máy chủ khi xác nhận.
+          </p>
+        </aside>
+      </form>
+    </main>
+    <footer th:replace="~{fragments :: footer}"></footer>
+  </body>
+</html>

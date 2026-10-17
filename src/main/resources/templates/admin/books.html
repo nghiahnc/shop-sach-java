@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments :: head('Quản lý sách')}"></head>
+  <body>
+    <header th:replace="~{fragments :: header}"></header>
+    <main id="main" class="container">
+      <nav th:replace="~{fragments :: adminNav}"></nav>
+      <div class="section-heading">
+        <h1>Kệ sách & tồn kho.</h1>
+        <a class="button" th:href="@{/admin/books/new}">Thêm đầu sách</a>
+      </div>
+      <div class="panel table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Bìa</th>
+              <th>Sách</th>
+              <th>Thể loại</th>
+              <th>Giá</th>
+              <th>Tồn</th>
+              <th>Trạng thái</th>
+              <th>Thao tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="book:${books}">
+              <td>
+                <img
+                  th:src="@{${'/images/book-'+#numbers.formatInteger(book.cover,2)+'.webp'}}"
+                  alt=""
+                />
+              </td>
+              <td>
+                <strong th:text="${book.title}"></strong><br /><small
+                  th:text="${book.author}"
+                ></small>
+              </td>
+              <td th:text="${book.categoryName}"></td>
+              <td th:text="${book.price.display()}"></td>
+              <td th:text="${book.stock}"></td>
+              <td th:text="${book.active?'Đang bán':'Tạm ngừng'}"></td>
+              <td>
+                <a th:href="@{/admin/books/{id}(id=${book.id})}">Chỉnh sửa</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+    <footer th:replace="~{fragments :: footer}"></footer>
+  </body>
+</html>

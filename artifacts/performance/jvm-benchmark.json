@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-17T13:00:49.217Z",
+  "environment": "Windows JDK21, development Neon, same JAR, sequential runs",
+  "rows": [
+    {
+      "tieredStopAtLevel1": false,
+      "startupMs": 14234,
+      "springStartupSeconds": 13.508,
+      "firstRequestMs": 902,
+      "warmMedianMs": 235,
+      "warmMaxMs": 248
+    },
+    {
+      "tieredStopAtLevel1": true,
+      "startupMs": 10087,
+      "springStartupSeconds": 9.518,
+      "firstRequestMs": 964,
+      "warmMedianMs": 276,
+      "warmMaxMs": 297
+    },
+    {
+      "tieredStopAtLevel1": false,
+      "startupMs": 11144,
+      "springStartupSeconds": 10.4,
+      "firstRequestMs": 856,
+      "warmMedianMs": 269,
+      "warmMaxMs": 287
+    },
+    {
+      "tieredStopAtLevel1": true,
+      "startupMs": 10580,
+      "springStartupSeconds": 9.924,
+      "firstRequestMs": 868,
+      "warmMedianMs": 245,
+      "warmMaxMs": 255
+    }
+  ]
+}

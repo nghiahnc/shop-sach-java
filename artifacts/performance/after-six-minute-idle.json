@@ -1,0 +1,19 @@
+{
+  "idleSeconds": 360,
+  "at": "2026-10-17T13:34:27.142Z",
+  "firstAfterIdle": {
+    "status": 200,
+    "cache": "STALE",
+    "ttfbMs": 479,
+    "htmlEndMs": 480,
+    "setCookie": false,
+    "hasHero": true
+  },
+  "browser": {
+    "cache": "STALE",
+    "ttfbMs": 505,
+    "htmlEndMs": 548,
+    "loadMs": 772,
+    "fcpMs": 860
+  }
+}

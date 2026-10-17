@@ -1,0 +1,59 @@
+{
+  "base": "https://shop-sach-java.vercel.app",
+  "date": "2026-10-17T13:02:27.533Z",
+  "rows": [
+    {
+      "run": 1,
+      "status": 200,
+      "cache": "MISS",
+      "ttfbMs": 1131,
+      "htmlEndMs": 23932,
+      "domMs": 24779,
+      "loadMs": 25364,
+      "fcpMs": 24456,
+      "lcpMs": 24936,
+      "failedImages": 0,
+      "stylesheet": {
+        "url": "/site.css",
+        "cacheControl": "no-cache, no-store, max-age=0, must-revalidate",
+        "cdn": "MISS"
+      }
+    },
+    {
+      "run": 2,
+      "status": 200,
+      "cache": "MISS",
+      "ttfbMs": 216,
+      "htmlEndMs": 415,
+      "domMs": 523,
+      "loadMs": 676,
+      "fcpMs": 580,
+      "lcpMs": 580,
+      "failedImages": 0
+    },
+    {
+      "run": 3,
+      "status": 200,
+      "cache": "MISS",
+      "ttfbMs": 253,
+      "htmlEndMs": 19267,
+      "domMs": 19383,
+      "loadMs": 19486,
+      "fcpMs": 19428,
+      "lcpMs": 19456,
+      "failedImages": 0
+    },
+    {
+      "run": 4,
+      "status": 200,
+      "cache": "MISS",
+      "ttfbMs": 247,
+      "htmlEndMs": 19250,
+      "domMs": 19422,
+      "loadMs": 19529,
+      "fcpMs": 19484,
+      "lcpMs": 19532,
+      "failedImages": 0
+    }
+  ]
+}

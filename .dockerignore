@@ -1,0 +1,11 @@
+.git
+.tools
+.env*
+.local
+.vercel
+target
+artifacts
+tools
+
+node_modules/
+artifacts/*.zip

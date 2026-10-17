@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments :: head('Quản trị')}"></head>
+  <body>
+    <header th:replace="~{fragments :: header}"></header>
+    <main id="main" class="container">
+      <nav th:replace="~{fragments :: adminNav}"></nav>
+      <div class="page-head">
+        <div class="eyebrow">GÓC QUẢN TRỊ</div>
+        <h1>Một ngày ở Trạm Sách.</h1>
+        <p class="muted">
+          Doanh thu chỉ cộng đơn đã thu tiền; mọi số liệu là dữ liệu demo.
+        </p>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <small>Doanh thu đã thu</small
+          ><strong th:text="${@ui.money(revenue)}"></strong>
+        </div>
+        <div class="stat">
+          <small>Tổng đơn hàng</small
+          ><strong th:text="${orders.size()}"></strong>
+        </div>
+        <div class="stat">
+          <small>Đầu sách</small><strong th:text="${bookCount}"></strong>
+        </div>
+        <div class="stat">
+          <small>Chờ thanh toán</small
+          ><strong th:text="${pendingCount}"></strong>
+        </div>
+      </div>
+      <div class="section-heading"><h2>Đơn hàng gần đây</h2></div>
+      <div class="panel table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Mã đơn</th>
+              <th>Người nhận</th>
+              <th>Thời gian</th>
+              <th>Trạng thái</th>
+              <th>Tổng tiền</th>
+              <th>Đã thu</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="o:${orders}">
+              <td>
+                <a
+                  th:href="@{/admin/orders/{id}(id=${o.id()})}"
+                  th:text="${o.code()}"
+                ></a>
+              </td>
+              <td th:text="${o.delivery().name}"></td>
+              <td th:text="${@ui.time(o.createdAt())}"></td>
+              <td>
+                <span class="badge" th:text="${o.status().label()}"></span>
+              </td>
+              <td th:text="${o.total().display()}"></td>
+              <td th:text="${o.paid()?'Đã thu':'Chưa thu'}"></td>
+            </tr>
+            <tr th:if="${orders.isEmpty()}">
+              <td colspan="6">
+                Chưa có đơn hàng. Tạo đơn từ cửa hàng để bắt đầu demo.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+    <footer th:replace="~{fragments :: footer}"></footer>
+  </body>
+</html>

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments :: head('Giỏ sách')}"></head>
+  <body>
+    <header th:replace="~{fragments :: header}"></header>
+    <main id="main" class="container">
+      <div class="page-head">
+        <div class="eyebrow">NHỮNG CUỐN SÁCH BẠN ĐÃ CHỌN</div>
+        <h1>Giỏ sách của bạn.</h1>
+        <p class="muted">Một chút thời gian cho những điều mình yêu thích.</p>
+      </div>
+      <div th:replace="~{fragments :: flash}"></div>
+      <div class="empty panel" th:if="${lines.isEmpty()}">
+        <h2>Giỏ sách đang chờ một câu chuyện.</h2>
+        <p>Chọn một cuốn sách để bắt đầu hành trình của bạn.</p>
+        <a class="button" th:href="@{/books#catalog}">Khám phá sách</a>
+      </div>
+      <div th:unless="${lines.isEmpty()}" class="two-col">
+        <div class="panel">
+          <article class="cart-line" th:each="line:${lines}">
+            <img
+              th:src="@{${'/images/book-'+#numbers.formatInteger(line.book.cover,2)+'.webp'}}"
+              th:alt="${line.book.title}"
+              width="64"
+              height="95"
+            />
+            <div>
+              <h3>
+                <a
+                  th:href="@{/books/{id}(id=${line.book.id})}"
+                  th:text="${line.book.title}"
+                ></a>
+              </h3>
+              <p
+                class="muted"
+                th:text="${line.book.author+' · '+line.book.price.display()}"
+              ></p>
+              <div class="quantity">
+                <form
+                  class="quantity"
+                  th:action="@{/cart/update}"
+                  method="post"
+                >
+                  <input
+                    type="hidden"
+                    name="bookId"
+                    th:value="${line.book.id}"
+                  /><label class="sr-only" th:for="${'qty-'+line.book.id}"
+                    >Số lượng</label
+                  ><input
+                    th:id="${'qty-'+line.book.id}"
+                    type="number"
+                    name="quantity"
+                    min="1"
+                    max="99"
+                    th:value="${line.quantity}"
+                  /><button class="secondary" type="submit">Cập nhật</button>
+                </form>
+                <form th:action="@{/cart/remove}" method="post">
+                  <input
+                    type="hidden"
+                    name="bookId"
+                    th:value="${line.book.id}"
+                  /><button class="text-button" type="submit">Xóa</button>
+                </form>
+              </div>
+            </div>
+            <strong th:text="${line.total.display()}"></strong>
+          </article>
+          <a class="button secondary mt" th:href="@{/books#catalog}"
+            >Tiếp tục chọn sách</a
+          >
+        </div>
+        <aside class="panel">
+          <h2>Tóm tắt đơn</h2>
+          <div th:if="${quote != null}">
+            <div th:replace="~{fragments :: totals(${quote})}"></div>
+            <a class="button full" th:href="@{/checkout}" data-spacing="top"
+              >Tiến hành đặt hàng ↗</a
+            >
+          </div>
+          <form class="coupon-form" th:action="@{/cart/coupon}" method="post">
+            <label class="sr-only" for="coupon">Mã giảm giá</label
+            ><input
+              id="coupon"
+              name="code"
+              maxlength="24"
+              th:value="${couponInput}"
+              placeholder="Mã giảm giá"
+            /><button class="secondary" type="submit">Áp dụng</button>
+          </form>
+          <small
+            >Xóa nội dung và áp dụng để bỏ mã.<br />Thử DOCSACH10 hoặc
+            CHAO20.</small
+          >
+          <p class="alert-demo">
+            Đây là cửa hàng demo. Thanh toán thẻ chỉ chạy trong Stripe sandbox.
+          </p>
+        </aside>
+      </div>
+    </main>
+    <footer th:replace="~{fragments :: footer}"></footer>
+  </body>
+</html>

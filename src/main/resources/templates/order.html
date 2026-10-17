@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments :: head('Chi tiết đơn')}"></head>
+  <body>
+    <header th:replace="~{fragments :: header}"></header>
+    <main id="main" class="container">
+      <th:block th:if="${admin}"
+        ><nav th:replace="~{fragments :: adminNav}"></nav
+      ></th:block>
+      <div class="page-head">
+        <div class="eyebrow">BIÊN NHẬN ĐƠN HÀNG DEMO</div>
+        <h1 th:text="${order.code()}"></h1>
+        <span class="badge" th:text="${order.status().label()}"></span>
+        <p class="muted" th:text="${@ui.time(order.createdAt())}"></p>
+      </div>
+      <div class="notice" th:if="${param.payment != null}" role="status">
+        Nếu vừa thanh toán, hãy chọn “Kiểm tra thanh toán”. Kết quả được xác
+        nhận từ Stripe; trở về trang này chưa đồng nghĩa đã thanh toán.
+      </div>
+      <div class="two-col">
+        <section class="panel">
+          <h2>Những cuốn sách đã chọn</h2>
+          <div class="summary-row" th:each="line:${order.lines()}">
+            <div>
+              <strong th:text="${line.title}"></strong><br /><small
+                th:text="${line.unitPrice.display()+' × '+line.quantity}"
+              ></small>
+            </div>
+            <strong th:text="${line.total().display()}"></strong>
+          </div>
+          <hr />
+          <div class="summary-row">
+            <span>Tiền sách</span
+            ><span th:text="${order.subtotal().display()}"></span>
+          </div>
+          <div class="summary-row">
+            <span>Giảm giá</span
+            ><span th:text="${'- '+order.discount().display()}"></span>
+          </div>
+          <div class="summary-row">
+            <span>Giao hàng</span
+            ><span th:text="${order.shipping().display()}"></span>
+          </div>
+          <div class="summary-row summary-total">
+            <span>Tổng cộng</span
+            ><span th:text="${order.total().display()}"></span>
+          </div>
+        </section>
+        <aside class="panel order-info">
+          <h2>Thông tin đơn</h2>
+          <p>
+            <strong>Người nhận</strong><br /><span
+              th:text="${order.delivery().name}"
+            ></span
+            ><br /><span th:text="${order.delivery().phone}"></span>
+          </p>
+          <p>
+            <strong>Địa chỉ</strong><br /><span
+              th:text="${order.delivery().address}"
+            ></span>
+          </p>
+          <p>
+            <strong>Thanh toán</strong><br /><span
+              th:text="${order.method()+' · '+(order.paid()?'Đã thu tiền':'Chưa thu tiền')}"
+            ></span
+            ><br /><small
+              th:if="${order.chargedCurrency() != null}"
+              th:text="${'Số tiền cổng thanh toán: '+@ui.charged(order.chargedCurrency(),order.chargedAmount())}"
+            ></small>
+          </p>
+          <p th:if="${order.method() == 'STRIPE'}">
+            <small
+              >Stripe sandbox · Hết hạn lúc
+              <span th:text="${@ui.time(order.expiresAt())}"></span
+            ></small>
+          </p>
+          <div class="actions" th:unless="${admin}">
+            <form
+              th:if="${order.status().name() == 'PENDING_PAYMENT'}"
+              th:action="@{/account/orders/{id}/retry(id=${order.id()})}"
+              method="post"
+            >
+              <button type="submit">Tiếp tục thanh toán</button>
+            </form>
+            <form
+              th:if="${order.status().name() == 'PENDING_PAYMENT'}"
+              th:action="@{/account/orders/{id}/refresh(id=${order.id()})}"
+              method="post"
+            >
+              <button class="secondary" type="submit">
+                Kiểm tra thanh toán
+              </button>
+            </form>
+            <form
+              th:if="${order.method() == 'COD' and order.status().name() == 'CONFIRMED'}"
+              th:action="@{/account/orders/{id}/cancel(id=${order.id()})}"
+              method="post"
+            >
+              <button class="secondary" type="submit">Hủy đơn COD</button>
+            </form>
+            <a class="button secondary" th:href="@{/account/orders}"
+              >Tất cả đơn</a
+            >
+          </div>
+          <div class="actions" th:if="${admin}">
+            <form
+              th:if="${order.status().name() == 'CONFIRMED'}"
+              th:action="@{/admin/orders/{id}(id=${order.id()})}"
+              method="post"
+            >
+              <input type="hidden" name="action" value="ship" /><button
+                type="submit"
+              >
+                Bắt đầu giao
+              </button>
+            </form>
+            <form
+              th:if="${order.status().name() == 'SHIPPING'}"
+              th:action="@{/admin/orders/{id}(id=${order.id()})}"
+              method="post"
+            >
+              <input type="hidden" name="action" value="complete" /><button
+                type="submit"
+              >
+                Hoàn tất giao
+              </button>
+            </form>
+            <form
+              th:if="${order.method() == 'COD' and order.status().name() == 'CONFIRMED'}"
+              th:action="@{/admin/orders/{id}(id=${order.id()})}"
+              method="post"
+            >
+              <input type="hidden" name="action" value="cancel" /><button
+                class="secondary"
+                type="submit"
+              >
+                Hủy đơn & hoàn tồn
+              </button>
+            </form>
+          </div>
+          <p class="alert-demo">
+            Sách, vận chuyển và thanh toán đều phục vụ trình diễn. Đơn thẻ đã
+            trả tiền chưa hỗ trợ hủy/hoàn tiền trong phiên bản này.
+          </p>
+        </aside>
+      </div>
+    </main>
+    <footer th:replace="~{fragments :: footer}"></footer>
+  </body>
+</html>

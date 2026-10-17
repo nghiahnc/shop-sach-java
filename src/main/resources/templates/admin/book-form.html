@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments :: head('Biên tập sách')}"></head>
+  <body>
+    <header th:replace="~{fragments :: header}"></header>
+    <main id="main" class="container">
+      <nav th:replace="~{fragments :: adminNav}"></nav>
+      <div class="page-head">
+        <h1
+          th:text="${book != null and book.id != null ? 'Biên tập đầu sách.' : 'Thêm một câu chuyện mới.'}"
+        ></h1>
+      </div>
+      <div th:replace="~{fragments :: flash}"></div>
+      <div th:replace="~{fragments :: demoHint}"></div><form
+        class="panel form-grid"
+        th:action="@{/admin/books/save}"
+        method="post"
+      >
+        <input
+          th:if="${book != null and book.id != null}"
+          type="hidden"
+          name="id"
+          th:value="${book.id}"
+        />
+        <div class="field">
+          <label for="title">Tên sách</label
+          ><input
+            id="title"
+            name="title"
+            th:value="${book?.title}"
+            required
+            maxlength="160"
+          />
+        </div>
+        <div class="field">
+          <label for="author">Tác giả</label
+          ><input
+            id="author"
+            name="author"
+            th:value="${book?.author}"
+            required
+            maxlength="120"
+          />
+        </div>
+        <div class="field">
+          <label for="categoryId">Thể loại</label
+          ><select id="categoryId" name="categoryId" required>
+            <option
+              th:each="c:${categories}"
+              th:value="${c.id}"
+              th:selected="${book != null and book.categoryId == c.id}"
+              th:text="${c.name}"
+            ></option>
+          </select>
+        </div>
+        <div class="field">
+          <img class="admin-cover-preview" data-cover-preview th:src="@{${'/images/book-'+#numbers.formatInteger(book != null ? book.cover : 1,2)+'.webp'}}" alt="Xem trước bìa sách"><label for="cover">Bìa có sẵn</label
+          ><select id="cover" name="cover">
+            <option
+              th:each="n:${#numbers.sequence(1,18)}"
+              th:value="${n}" th:data-cover-url="@{${'/images/book-'+#numbers.formatInteger(n,2)+'.webp'}}"
+              th:selected="${book != null and book.cover == n}"
+              th:text="${'Ảnh bìa '+n}"
+            ></option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="price">Đơn giá (VND)</label
+          ><input
+            id="price"
+            type="number"
+            name="price"
+            th:value="${book?.price?.vnd()}"
+            min="1000"
+            max="100000000"
+            required
+          />
+        </div>
+        <div class="field">
+          <label for="stock">Tồn kho khả dụng</label
+          ><input
+            id="stock"
+            type="number"
+            name="stock"
+            th:value="${book?.stock}"
+            min="0"
+            max="100000"
+            required
+          /><small>Tồn hiện tại đã trừ các đơn đang giữ hàng.</small>
+        </div>
+        <div class="field span2">
+          <label for="description">Giới thiệu</label
+          ><textarea
+            id="description"
+            name="description"
+            rows="5"
+            maxlength="5000"
+            required
+            th:text="${book?.description}"
+          ></textarea>
+        </div>
+        <div class="field check">
+          <input
+            id="active"
+            type="checkbox"
+            name="active"
+            value="true"
+            th:checked="${book == null or book.active}"
+          /><label for="active">Đang bán</label>
+        </div>
+        <div class="actions span2">
+          <button type="submit">Lưu đầu sách</button
+          ><a class="button secondary" th:href="@{/admin/books}">Quay lại</a>
+        </div>
+      </form>
+    </main>
+    <footer th:replace="~{fragments :: footer}"></footer>
+  </body>
+</html>

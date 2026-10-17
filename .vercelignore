@@ -1,0 +1,9 @@
+.tools
+.env*
+.local
+target
+artifacts/private
+tools
+
+node_modules/
+artifacts/*.zip
